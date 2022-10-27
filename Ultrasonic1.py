@@ -52,10 +52,11 @@ while(1):
 		timeCount += 1
 		print(str(timeCount))
 		if timeCount >= 3:
-			camera.capture("/home/haram/Desktop/image%d.jpg"%imageCount)
+			camera.capture("/home/haram/Project/refridge_raspberryPi/Images/image%d.jpg"%imageCount)
 			print(str(fDistance)+", Captured")
 			imageCount += 1
 			timeCount = 0
 	else:
 		timeCount = 0
 	time.sleep(1)
+
