@@ -10,6 +10,8 @@ TP = 4
 
 EP = 17
 
+BP = 18
+
 def getDistance():
 	fdistance = 0.0
 	nStartTime, nEndTime = 0,0
@@ -36,6 +38,9 @@ GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(TP, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(EP, GPIO.IN)
+GPIO.setup(BP, GPIO.OUT)
+GPIO.setwarnings(False)
+buzzer = GPIO.PWM(BP, 262)
 time.sleep(0.5)
 
 camera=PiCamera()
@@ -56,6 +61,9 @@ while(1):
 			print(str(fDistance)+", Captured")
 			imageCount += 1
 			timeCount = 0
+			buzzer.start(60.0)
+			time.sleep(0.5)
+			buzzer.stop()		
 	else:
 		timeCount = 0
 	time.sleep(1)
