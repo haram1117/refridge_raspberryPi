@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 from picamera import PiCamera
 import time
+import StorageManager
+import os
 
 usleep = lambda x : time.sleep(x/1000000.0)
 
@@ -59,11 +61,14 @@ while(1):
 		if timeCount >= 3:
 			camera.capture("/home/haram/Project/refridge_raspberryPi/Images/image%d.jpg"%imageCount)
 			print(str(fDistance)+", Captured")
+			image_path = os.path.join(os.getcwd(), "Images/image%d.jpg"%imageCount)
+			check = StorageManager.upload_file(image_path, "ntp2-bucket")
+			print(check)
 			imageCount += 1
 			timeCount = 0
 			buzzer.start(60.0)
 			time.sleep(0.5)
-			buzzer.stop()		
+			buzzer.stop()
 	else:
 		timeCount = 0
 	time.sleep(1)
