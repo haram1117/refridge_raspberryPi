@@ -3,16 +3,7 @@ from picamera import PiCamera
 import time
 import StorageManager
 import os
-
-usleep = lambda x : time.sleep(x/1000000.0)
-
 import datetime as dt
-
-TP = 4
-
-EP = 17
-
-BP = 18
 
 def getDistance():
 	fdistance = 0.0
@@ -35,6 +26,14 @@ def getDistance():
 
 	fDistance = (nEndTime - nStartTime).microseconds / 29. / 2.
 	return fDistance
+
+usleep = lambda x : time.sleep(x/1000000.0)
+
+TP = 4
+
+EP = 17
+
+BP = 18
 
 GPIO.setmode(GPIO.BCM)
 
